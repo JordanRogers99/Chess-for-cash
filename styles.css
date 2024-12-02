@@ -1,1 +1,22 @@
 
+.open-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 3px;
+    text-align: center;
+}
+
+    .Logo {
+        border-style: solid;
+        font-family:Georgia, 'Times New Roman', Times, serif
+    }
+
+    .intro {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        margin: 20px;
+    }
+
+
+    
+
