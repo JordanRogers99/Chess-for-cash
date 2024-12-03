@@ -1,5 +1,10 @@
+body {
+    background-color: rgb(48, 22, 13);
+}
+
 
 .open-text {
+    color: white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -16,6 +21,9 @@
     .intro {
         font-family: Georgia, 'Times New Roman', Times, serif;
         margin: 20px;
+        border-style: solid;
+        border-radius: 15px;
+        font-size: larger;
     }
 
 
