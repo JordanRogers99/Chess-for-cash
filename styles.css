@@ -5,6 +5,7 @@
     justify-content: space-around;
     gap: 3px;
     text-align: center;
+    margin: 20px;
 }
 
     .Logo {
@@ -15,6 +16,71 @@
     .intro {
         font-family: Georgia, 'Times New Roman', Times, serif;
         margin: 20px;
+    }
+
+
+
+.links {
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+gap: 3px;
+margin: 15px;
+}
+
+    .home {
+        border-style:groove;
+        border-color: black;
+        padding: 10px;
+        flex: 1 0 10px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color: rgb(131, 171, 77);
+    }
+
+    .contact {
+        border-style:groove;
+        border-color: black;
+        padding: 10px;
+        flex: 1 0 10px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color: rgb(131, 171, 77);
+    }
+
+    .FAQ {
+        border-style:groove;
+        border-color: black;
+        padding: 10px;
+        flex: 1 0 10px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color: rgb(131, 171, 77);
+    }
+
+    .tournaments {
+        border-style:groove;
+        border-color: black;
+        padding: 10px;
+        flex: 1 0 10px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color: rgb(131, 171, 77);
+    }
+
+    .login {
+        border-style:groove;
+        border-color: black;
+        padding: 10px;
+        flex: 1 0 10px;
+        text-align: center;
+        text-decoration: none;
+        color:white;
+        background-color: rgb(131, 171, 77);
     }
 
 
