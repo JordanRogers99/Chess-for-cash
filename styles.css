@@ -15,11 +15,11 @@ body {
 
     .Logo {
         border-style: solid;
-        font-family:Georgia, 'Times New Roman', Times, serif
+        font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
     }
 
     .intro {
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
         margin: 20px;
         border-style: solid;
         border-radius: 15px;
@@ -44,7 +44,8 @@ margin: 15px;
         text-align: center;
         text-decoration: none;
         color:white;
-        background-color: rgb(131, 171, 77);
+        background-color: rgb(18, 18, 88);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
     }
 
     .contact {
@@ -55,7 +56,7 @@ margin: 15px;
         text-align: center;
         text-decoration: none;
         color:white;
-        background-color: rgb(131, 171, 77);
+        background-color:  rgb(18, 18, 88);
     }
 
     .FAQ {
@@ -66,7 +67,7 @@ margin: 15px;
         text-align: center;
         text-decoration: none;
         color:white;
-        background-color: rgb(131, 171, 77);
+        background-color: rgb(18, 18, 88);
     }
 
     .tournaments {
@@ -77,7 +78,7 @@ margin: 15px;
         text-align: center;
         text-decoration: none;
         color:white;
-        background-color: rgb(131, 171, 77);
+        background-color: rgb(18, 18, 88);
     }
 
     .login {
@@ -88,7 +89,7 @@ margin: 15px;
         text-align: center;
         text-decoration: none;
         color:white;
-        background-color: rgb(131, 171, 77);
+        background-color: rgb(18, 18, 88);
     }
 
 .video {
