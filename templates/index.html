@@ -1,73 +1,86 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProChess Circuit</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-        .links {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .links a {
-            padding: 10px;
-            margin: 5px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .links a:hover {
-            background: #0056b3;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ProChess Circuit</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css') }}"
+        />
+        <style>
+            .links {
+                text-align: center;
+                margin-top: 20px;
+            }
+            .links a {
+                padding: 10px;
+                margin: 5px;
+                background: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 5px;
+            }
+            .links a:hover {
+                background: #0056b3;
+            }
 
-        .open-text {
-            text-align: center;
-            margin-top: 50px;
-        }
+            .open-text {
+                text-align: center;
+                margin-top: 50px;
+            }
 
-        .video {
-            margin-top: 30px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
+            .video {
+                margin-top: 30px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="links">
+            <a class="home" href="{{ url_for('index') }}">Homepage</a>
+            <a class="contact" href="{{ url_for('contact') }}">Contact</a>
+            <a class="tournaments" href="{{ url_for('tournaments') }}"
+                >Upcoming Tournaments</a
+            >
+            <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
 
-    <div class="links">
-        <a class="home" href="{{ url_for('index') }}">Homepage</a>
-        <a class="contact" href="{{ url_for('contact') }}">Contact</a>
-        <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
-        <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
-        
-        {% if session.get('username') %}
+            {% if session.get('username') %}
             <!-- Display Logout if user is logged in -->
             <a class="logout" href="{{ url_for('logout') }}">Logout</a>
-        {% else %}
+            {% else %}
             <!-- Display Login if user is not logged in -->
             <a class="login" href="{{ url_for('login') }}">Login</a>
-        {% endif %}
-        
-        <a class="play" href="{{ url_for('play') }}">Play Chess</a>
-    </div>
+            {% endif %}
 
-    <div class="open-text">
-        <div class="Logo">
-            <h1>Play Chess Professionally.</h1>
+            <a class="play" href="{{ url_for('play') }}">Play Chess</a>
         </div>
-        <div class="intro">
-            <h4>Welcome to the Pro Chess Circuit.</h4>
-            <h4>Here, you can login to your account, browse tournaments, or create an account with us. 
-            Please note that you will have to verify your rating range by connecting your chess.com or Lichess account. 
-            Find conditions <span><a href="{{ url_for('faq') }}">here</a></span></h4>
+
+        <div class="open-text">
+            <div class="Logo">
+                <h1>Play Chess Professionally.</h1>
+            </div>
+            <div class="intro">
+                <h4>Welcome to the Pro Chess Circuit.</h4>
+                <h4>
+                    Here, you can login to your account, browse tournaments, or
+                    create an account with us. Please note that you will have to
+                    verify your rating range by connecting your chess.com or
+                    Lichess account. Find conditions
+                    <span><a href="{{ url_for('faq') }}">here</a></span>
+                </h4>
+            </div>
         </div>
-    </div>
 
-    <div class="video">
-        <iframe width="1200" height="600" src="https://www.youtube.com/embed/EeRfSNx5RhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
-</body>
+        <div class="video">
+            <iframe
+                width="1200"
+                height="600"
+                src="https://www.youtube.com/embed/EeRfSNx5RhE"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+            ></iframe>
+        </div>
+    </body>
 </html>

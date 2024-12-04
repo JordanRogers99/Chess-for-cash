@@ -1,54 +1,72 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login or Register</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login or Register</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css') }}"
+        />
+    </head>
+    <body>
+        <!-- Navigation Links (now added to the login page) -->
+        <div class="links">
+            <a class="home" href="{{ url_for('index') }}">Homepage</a>
+            <a class="contact" href="{{ url_for('contact') }}">Contact</a>
+            <a class="tournaments" href="{{ url_for('tournaments') }}"
+                >Upcoming Tournaments</a
+            >
+            <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
 
-    <!-- Navigation Links (now added to the login page) -->
-    <div class="links">
-        <a class="home" href="{{ url_for('index') }}">Homepage</a>
-        <a class="contact" href="{{ url_for('contact') }}">Contact</a>
-        <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
-        <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
-
-        {% if session.get('username') %}
+            {% if session.get('username') %}
             <!-- Display Logout if user is logged in -->
             <a class="logout" href="{{ url_for('logout') }}">Logout</a>
-        {% else %}
+            {% else %}
             <!-- Display Login if user is not logged in -->
             <a class="login" href="{{ url_for('login') }}">Login</a>
-        {% endif %}
-        
-        <a class="play" href="{{ url_for('play') }}">Play Chess</a>
-    </div>
+            {% endif %}
 
-    <!-- Login/Register Form -->
-    <div class="login-container">
-        <h2>Login or Register</h2>
+            <a class="play" href="{{ url_for('play') }}">Play Chess</a>
+        </div>
 
-        <form method="POST">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required>
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <div>
-                <label for="confirm_password">Confirm Password (Only for Register)</label>
-                <input type="password" name="confirm_password" id="confirm_password">
-            </div>
-            <div>
-                <button type="submit" name="action" value="login">Login</button>
-                <button type="submit" name="action" value="register">Register</button>
-            </div>
-        </form>
-    </div>
+        <!-- Login/Register Form -->
+        <div class="login-container">
+            <h2>Login or Register</h2>
 
-</body>
+            <form method="POST">
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        required
+                    />
+                </div>
+                <div>
+                    <label for="confirm_password"
+                        >Confirm Password (Only for Register)</label
+                    >
+                    <input
+                        type="password"
+                        name="confirm_password"
+                        id="confirm_password"
+                    />
+                </div>
+                <div>
+                    <button type="submit" name="action" value="login">
+                        Login
+                    </button>
+                    <button type="submit" name="action" value="register">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </body>
 </html>
