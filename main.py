@@ -2,6 +2,7 @@ import os
 import json
 from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from chess import Chess  # Import the chess module to handle game logic
 
 app = Flask(__name__)
 app.secret_key = 'some_random_key'  # Required for flashing messages and sessions
@@ -15,11 +16,7 @@ def load_users_db():
     if os.path.exists(USER_DB_FILE):
         with open(USER_DB_FILE, 'r') as f:
             return json.load(f)
-    else:
-        # If the file doesn't exist, create it and return an empty dictionary
-        with open(USER_DB_FILE, 'w') as f:
-            json.dump({}, f)
-        return {}
+    return {}
 
 
 # Function to save the user data to the file
@@ -99,8 +96,7 @@ def contact():
 # Tournaments page route
 @app.route('/tournaments')
 def tournaments():
-    return render_template(
-        'tournaments.html')  # Make sure you create this file
+    return render_template('tournaments.html')  # Make sure you create this file
 
 
 # FAQ page route
@@ -108,6 +104,11 @@ def tournaments():
 def faq():
     return render_template('faq.html')  # Make sure you create this file
 
+
+# Play route for chess game
+@app.route('/play')
+def play():
+    return render_template('play.html')  # Render the play.html page
 
 if __name__ == '__main__':
     app.run(debug=True)
