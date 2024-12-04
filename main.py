@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)  # Initialize Flask app
@@ -10,7 +10,6 @@ users_db = {}
 
 # Function to simulate saving users to a file (or database)
 def save_users_db(users_db):
-    # You can implement this to save the data to a file or a real database
     pass
 
 
@@ -37,6 +36,7 @@ def login():
                 # Check if entered password matches the stored hashed password
                 if check_password_hash(stored_password_hash, password):
                     flash('Login Successful!', 'success')
+                    session['username'] = username  # Store username in session
                     return redirect(
                         url_for('index')
                     )  # Redirect to the home page after successful login
@@ -76,37 +76,33 @@ def login():
     return render_template('login.html')  # Render the login form
 
 
-# Contact route
+# Logout route
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # Remove username from session
+    flash('You have been logged out successfully.', 'success')
+    return redirect(url_for('index'))  # Redirect to the home page after logout
+
+
+# Other routes (contact, tournaments, etc.)
 @app.route('/contact')
 def contact():
     return render_template('contact.html')  # Render the contact page
 
 
-# Tournaments route
 @app.route('/tournaments')
 def tournaments():
     return render_template('tournaments.html')  # Render the tournaments page
 
 
-# FAQ route - New route added for FAQ page
 @app.route('/faq')
 def faq():
     return render_template('faq.html')  # Render the FAQ page
 
 
-# Play route - New route added for Play Chess page
 @app.route('/play')
 def play():
     return render_template('play.html')  # Render the Play Chess page
-
-
-# Logout route
-@app.route('/logout')
-def logout():
-    # Implement logout functionality, e.g., clearing session data
-    flash('You have been logged out successfully.', 'success')
-    return redirect(
-        url_for('index'))  # Redirect to the index page after logout
 
 
 if __name__ == "__main__":

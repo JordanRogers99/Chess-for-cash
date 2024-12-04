@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProChess Circuit</title>
-    <!-- Correctly link to the CSS using Flask's url_for() -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <style>
         .links {
@@ -36,19 +35,23 @@
 </head>
 <body>
 
-    <!-- Navigation Links -->
-    <!-- Navigation Links -->
     <div class="links">
         <a class="home" href="{{ url_for('index') }}">Homepage</a>
         <a class="contact" href="{{ url_for('contact') }}">Contact</a>
         <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
         <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
-        <a class="login" href="{{ url_for('login') }}">Login</a>
-        <a class="play" href="{{ url_for('play') }}">Play Chess</a> <!-- This link now works -->
+        
+        {% if session.get('username') %}
+            <!-- Display Logout if user is logged in -->
+            <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+        {% else %}
+            <!-- Display Login if user is not logged in -->
+            <a class="login" href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+        
+        <a class="play" href="{{ url_for('play') }}">Play Chess</a>
     </div>
 
-
-    <!-- Main Intro Section -->
     <div class="open-text">
         <div class="Logo">
             <h1>Play Chess Professionally.</h1>
@@ -61,7 +64,6 @@
         </div>
     </div>
 
-    <!-- Embedded Video -->
     <div class="video">
         <iframe width="1200" height="600" src="https://www.youtube.com/embed/EeRfSNx5RhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>

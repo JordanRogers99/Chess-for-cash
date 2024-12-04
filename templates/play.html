@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Tournament - Play</title>
-    <!-- Link to Chessboard.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
     <style>
         body {
@@ -56,6 +55,11 @@
         <a href="{{ url_for('index') }}">Home</a>
         <a href="{{ url_for('tournaments') }}">Tournaments</a>
         <a href="{{ url_for('contact') }}">Contact</a>
+        {% if session.get('username') %}
+            <a class="logout" href="{{ url_for('logout') }}">Logout</a> <!-- Logout link -->
+        {% else %}
+            <a class="login" href="{{ url_for('login') }}">Login</a>
+        {% endif %}
     </div>
 
     <h1>Chess Tournament - Play</h1>
