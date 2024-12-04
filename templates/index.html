@@ -6,9 +6,37 @@
     <title>ProChess Circuit</title>
     <!-- Correctly link to the CSS using Flask's url_for() -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        .links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .links a {
+            padding: 10px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background: #0056b3;
+        }
+
+        .open-text {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .video {
+            margin-top: 30px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Navigation Links -->
     <!-- Navigation Links -->
     <div class="links">
         <a class="home" href="{{ url_for('index') }}">Homepage</a>
@@ -16,9 +44,9 @@
         <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
         <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
         <a class="login" href="{{ url_for('login') }}">Login</a>
-        <!-- Added Play link -->
-        <a class="play" href="{{ url_for('play') }}">Play Chess</a> <!-- New link added for play.html -->
+        <a class="play" href="{{ url_for('play') }}">Play Chess</a> <!-- This link now works -->
     </div>
+
 
     <!-- Main Intro Section -->
     <div class="open-text">

@@ -12,6 +12,16 @@ files = [
 ]
 
 [[package]]
+name = "chess"
+version = "1.11.1"
+description = "A chess library with move generation and validation, Polyglot opening book probing, PGN reading and writing, Gaviota tablebase probing, Syzygy tablebase probing, and XBoard/UCI engine communication."
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "chess-1.11.1.tar.gz", hash = "sha256:b7f66a32dc599ab260e2b688e6ac4e868dad840377a54b61357e2dec2a5fed00"},
+]
+
+[[package]]
 name = "click"
 version = "8.1.6"
 description = "Composable command line interface toolkit"
@@ -206,4 +216,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11.0,<3.12"
-content-hash = "9050a84cf7524e474c5ef54845e4525265e152901ea818c35682ce0084d73195"
+content-hash = "b44edaae072506068bb8b1cb9f1baf5ca216834e3f2343dfb64c789f6e949458"

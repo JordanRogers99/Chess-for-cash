@@ -1,41 +1,26 @@
-import os
-import json
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from chess import Chess  # Import the chess module to handle game logic
 
-app = Flask(__name__)
-app.secret_key = 'some_random_key'  # Required for flashing messages and sessions
+app = Flask(__name__)  # Initialize Flask app
+app.secret_key = 'your_secret_key'  # Secret key for session management and flash messages
 
-# Path to the file where the user data will be stored
-USER_DB_FILE = 'users.json'
-
-
-# Function to load the user data from the file
-def load_users_db():
-    if os.path.exists(USER_DB_FILE):
-        with open(USER_DB_FILE, 'r') as f:
-            return json.load(f)
-    return {}
+# In-memory database simulation (replace with actual database in production)
+users_db = {}
 
 
-# Function to save the user data to the file
+# Function to simulate saving users to a file (or database)
 def save_users_db(users_db):
-    with open(USER_DB_FILE, 'w') as f:
-        json.dump(users_db, f)
+    # You can implement this to save the data to a file or a real database
+    pass
 
 
-# Load the user data into memory at the start of the app
-users_db = load_users_db()
-
-
-# Home route
+# Home route - Index Page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html')  # Render the home page
 
 
-# Login and Register route (same route for both actions)
+# Login and Registration Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -52,7 +37,9 @@ def login():
                 # Check if entered password matches the stored hashed password
                 if check_password_hash(stored_password_hash, password):
                     flash('Login Successful!', 'success')
-                    return redirect(url_for('index'))  # Redirect to homepage
+                    return redirect(
+                        url_for('index')
+                    )  # Redirect to the home page after successful login
                 else:
                     flash('Invalid Credentials. Try again.', 'error')
             else:
@@ -82,33 +69,45 @@ def login():
             save_users_db(users_db)  # Save the updated user data to the file
 
             flash('Registration successful! You can now log in.', 'success')
-            return redirect(url_for('login'))
+            return redirect(
+                url_for('login')
+            )  # Redirect to the login page after successful registration
 
     return render_template('login.html')  # Render the login form
 
 
-# Contact page route
+# Contact route
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')  # Make sure you create this file
+    return render_template('contact.html')  # Render the contact page
 
 
-# Tournaments page route
+# Tournaments route
 @app.route('/tournaments')
 def tournaments():
-    return render_template('tournaments.html')  # Make sure you create this file
+    return render_template('tournaments.html')  # Render the tournaments page
 
 
-# FAQ page route
+# FAQ route - New route added for FAQ page
 @app.route('/faq')
 def faq():
-    return render_template('faq.html')  # Make sure you create this file
+    return render_template('faq.html')  # Render the FAQ page
 
 
-# Play route for chess game
+# Play route - New route added for Play Chess page
 @app.route('/play')
 def play():
-    return render_template('play.html')  # Render the play.html page
+    return render_template('play.html')  # Render the Play Chess page
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+# Logout route
+@app.route('/logout')
+def logout():
+    # Implement logout functionality, e.g., clearing session data
+    flash('You have been logged out successfully.', 'success')
+    return redirect(
+        url_for('index'))  # Redirect to the index page after logout
+
+
+if __name__ == "__main__":
+    app.run(debug=True)  # Run the Flask app in debug mode

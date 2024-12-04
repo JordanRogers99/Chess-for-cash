@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Tournament - Play</title>
+    <!-- Link to Chessboard.js CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .timer {
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
+        }
+        .board {
+            width: 400px;
+            height: 400px;
+            margin: 20px auto;
+            background-color: #f4f4f4;
+            border: 2px solid #ccc;
+        }
+        .links a {
+            padding: 10px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background: #0056b3;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Links -->
+    <div class="links">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('tournaments') }}">Tournaments</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </div>
+
+    <h1>Chess Tournament - Play</h1>
+
+    <!-- Chessboard Container -->
+    <div id="board1" class="board"></div>
+
+    <!-- Timer Section -->
+    <div class="timer">
+        <p>Time Left: <span id="timer">10:00</span></p>
+    </div>
+
+    <!-- Game Controls -->
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="resetGame()">Reset Game</button>
+
+    <!-- Script for Chessboard.js and Game Timer -->
+    <script src="https://unpkg.com/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var board;
+        var game = new Chess();
+        var timer;
+        var timeLeftWhite = 600;  // 10 minutes for White
+        var timeLeftBlack = 600;  // 10 minutes for Black
+        var currentPlayer = 'white';  // White starts the game
+
+        // Initialize the Chessboard
+        function initBoard() {
+            board = ChessBoard('board1', {
+                draggable: true,
+                dropOffBoard: 'trash',
+                sparePieces: false,
+                onDrop: handleMove // Handle move on the chessboard
+            });
+        }
+
+        // Function to handle the move on the board
+        function handleMove(source, target) {
+            var move = game.move({
+                from: source,
+                to: target,
+                promotion: 'q' // Automatically promote to queen for simplicity
+            });
+
+            // Send move to the server using AJAX
+            $.ajax({
+                url: '/play',
+                type: 'POST',
+                data: { move: move.san },
+                success: function(response) {
+                    if (response.move) {
+                        renderMoveHistory(game.history());  // Render the move history
+                        updateTime();
+                    } else {
+                        alert('Invalid move');
+                    }
+                },
+                error: function() {
+                    alert('Error processing move');
+                }
+            });
+        }
+
+        // Start the game
+        function startGame() {
+            game.reset();  // Reset the game
+            board.start(); // Initialize the chessboard
+            startTimer();  // Start the timer
+        }
+
+        // Reset the game
+        function resetGame() {
+            game.reset();  // Reset the game state
+            board.clear(); // Clear the chessboard
+            timeLeftWhite = 600;  // Reset time to 10 minutes
+            timeLeftBlack = 600;
+            currentPlayer = 'white';  // Reset to white's turn
+            document.getElementById("timer").textContent = "10:00";  // Reset timer display
+        }
+
+        // Start the timer
+        function startTimer() {
+            timer = setInterval(function() {
+                if (currentPlayer === 'white' && timeLeftWhite > 0) {
+                    timeLeftWhite--;  // Decrement white's time
+                    updateTimerDisplay(timeLeftWhite);
+                } else if (currentPlayer === 'black' && timeLeftBlack > 0) {
+                    timeLeftBlack--;  // Decrement black's time
+                    updateTimerDisplay(timeLeftBlack);
+                } else {
+                    clearInterval(timer);
+                    alert(currentPlayer + " time's up!");  // Alert when time's up
+                }
+            }, 1000);
+        }
+
+        // Update the timer display
+        function updateTimerDisplay(timeLeft) {
+            var minutes = Math.floor(timeLeft / 60);
+            var seconds = timeLeft % 60;
+            document.getElementById("timer").textContent = (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+        }
+
+        // Switch turns between players
+        function updateTime() {
+            currentPlayer = (currentPlayer === 'white') ? 'black' : 'white';  // Switch player
+        }
+
+        // Function to render move history (for debugging)
+        function renderMoveHistory(moves) {
+            var historyElement = $('#move-history').empty();
+            historyElement.empty();
+            historyElement.append(moves.join(' '));
+        }
+
+        // Initialize the board when the page loads
+        initBoard();
+    </script>
+
+</body>
+</html>

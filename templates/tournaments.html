@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Tournaments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Upcoming Tournaments</h1>
+    <p>Check out our list of upcoming chess tournaments.</p>
+
+    <!-- List of upcoming tournaments (you can dynamically generate this in Flask later) -->
+    <ul>
+        <li>Chess Championship 2024 - January 15</li>
+        <li>Spring Open Tournament - March 10</li>
+        <li>Summer Invitational - June 5</li>
+    </ul>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

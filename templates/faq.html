@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Frequently Asked Questions (FAQ)</h1>
+
+    <h2>1. What is this website about?</h2>
+    <p>This website is dedicated to providing information on upcoming chess tournaments.</p>
+
+    <h2>2. How do I register for a tournament?</h2>
+    <p>You can register for a tournament through the tournaments page, where you'll find all the upcoming events.</p>
+
+    <h2>3. How do I contact the support team?</h2>
+    <p>For any queries, please visit our contact page.</p>
+
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>
