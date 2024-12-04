@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login or Sign Up - ProChess Circuit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Links -->
+    <div class="links">
+        <a class="home" href="{{ url_for('index') }}">Homepage</a>
+        <a class="contact" href="{{ url_for('contact') }}">Contact</a>
+        <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
+        <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
+        <a class="login" href="{{ url_for('login') }}">Login</a>
+    </div>
+
+    <div class="open-text">
+        <div class="Logo">
+            <h1>Login or Sign Up to ProChess Circuit</h1>
+        </div>
+        <div class="intro">
+            <h4>Access your account or create a new one by filling in the form below.</h4>
+        </div>
+    </div>
+
+    <!-- Display Login Form or Registration Form -->
+    <div class="form-container">
+        <!-- Login Form -->
+        <form action="{{ url_for('login') }}" method="POST" id="login-form" class="form-section">
+            <input type="hidden" name="action" value="login">  <!-- To differentiate action type -->
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <p>Don't have an account? <a href="javascript:void(0);" onclick="showRegisterForm()">Sign Up</a></p>
+    </div>
+
+    <!-- Registration Form (Initially Hidden) -->
+    <div class="form-container" id="register-form-container" style="display: none;">
+        <form action="{{ url_for('login') }}" method="POST" id="register-form" class="form-section">
+            <input type="hidden" name="action" value="register">  <!-- To differentiate action type -->
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username-register" required>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password-register" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="confirm-password-register" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p>Already have an account? <a href="javascript:void(0);" onclick="showLoginForm()">Log In</a></p>
+    </div>
+
+    <!-- JavaScript to toggle between login and registration forms -->
+    <script>
+        function showRegisterForm() {
+            document.getElementById('login-form').style.display = 'none';
+            document.getElementById('register-form-container').style.display = 'block';
+        }
+
+        function showLoginForm() {
+            document.getElementById('register-form-container').style.display = 'none';
+            document.getElementById('login-form').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
