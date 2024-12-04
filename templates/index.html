@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProChess Circuit</title>
+    <!-- Correctly link to the CSS using Flask's url_for() -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <!-- Navigation Links -->
+    <div class="links">
+        <a class="home" href="{{ url_for('index') }}">Homepage</a>
+        <a class="contact" href="{{ url_for('contact') }}">Contact</a>
+        <a class="tournaments" href="{{ url_for('tournaments') }}">Upcoming Tournaments</a>
+        <a class="FAQ" href="{{ url_for('faq') }}">FAQ's</a>
+        <a class="login" href="{{ url_for('login') }}">Login</a>
+    </div>
+
+    <!-- Main Intro Section -->
+    <div class="open-text">
+        <div class="Logo">
+            <h1>Play Chess Professionally.</h1>
+        </div>
+        <div class="intro">
+            <h4>Welcome to the Pro Chess Circuit.</h4>
+            <h4>Here, you can login to your account, browse tournaments, or create an account with us. 
+            Please note that you will have to verify your rating range by connecting your chess.com or Lichess account. 
+            Find conditions <span><a href="{{ url_for('faq') }}">here</a></span></h4>
+        </div>
+    </div>
+
+    <!-- Embedded Video -->
+    <div class="video">
+        <iframe width="1200" height="600" src="https://www.youtube.com/embed/EeRfSNx5RhE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+</body>
+</html>
