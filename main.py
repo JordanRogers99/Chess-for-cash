@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__)  # Initialize Flask app
+app = Flask(__name__,
+            static_folder='static')  # Explicitly define the static folder
 app.secret_key = 'your_secret_key'  # Secret key for session management and flash messages
 
 # In-memory database simulation (replace with actual database in production)
